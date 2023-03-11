@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './component/navbar';
+import Homepage from './component/homepage';
+import Router from './routers/router';
 
 function App() {
   return (
-    <div className="App">
-     
+    <div className="">
+      <Navbar/>
+      <Router/>
     </div>
   );
 }
