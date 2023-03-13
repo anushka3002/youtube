@@ -45,7 +45,6 @@ const Homepage = () => {
             <>
             <div>
               <Link to="/videopage"><img onClick={()=>handleClick(e.id.videoId)} className='w-[90%] h-[75%] rounded-[14px]' src={e.snippet.thumbnails.high.url}></img></Link>
-              {/* <iframe src={`https://www.youtube.com/embed/${e.id.videoId}`}></iframe> */}
               <p>{e.snippet.title}</p>
             </div>
             </>

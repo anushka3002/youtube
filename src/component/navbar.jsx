@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Navbar = () => {
+
+  const [value,setValue] = useState("")
+  const [updatedValue, setUpdatedValue] = useState("")
+
+  const handleChange = (e) =>{
+    setValue(e.target.value)
+  }
+
+  const handleKeyDown = (e) =>{
+    if(e.key === "Enter"){
+      setUpdatedValue(value)
+      console.log(value)
+    }
+  }
+
   return (
     <div>
-      <div className=" py-5 flex justify-between mx-5">
-        <div className="flex justify-between w-[12%] ">
+      <div className=" py-2 flex justify-between mx-5">
+        <div className="flex justify-between w-[12%] my-auto">
           <div>
             {" "}
             <img
@@ -16,60 +31,39 @@ const Navbar = () => {
           <div>
             <img
               src="https://149504167.v2.pressablecdn.com/wp-content/uploads/2019/10/2000px-YouTube_Logo_2017.svg_.png"
-              width="100px"
-              height="20px"
+              width="90px"
+              height="18px"
             />
           </div>
         </div>
-        <div className="flex">
-          <div class="flex justify-center">
-            <div class="">
-              <div class=" flex w-full flex-wrap">
-                <input
-                  type="search"
-                  class="border m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                  placeholder="Search"
-                  aria-label="Search"
-                  aria-describedby="button-addon1"
-                />
-                <button
-                  class="flex items-center rounded-r bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
-                  type="button"
-                  id="button-addon1"
-                  data-te-ripple-init
-                  data-te-ripple-color="light"
-                >
-                  <img
-                    src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png"
-                    width="22px"
-                    height="22px"
-                  />
-                </button>
-                <img
-                  id="mic"
-                  src="https://www.iconpacks.net/icons/1/free-microphone-icon-342-thumb.png"
-                  width="22px"
-                  height="22px"
-                />
+        <div className="flex w-[50%] rounded-[20px]">
+            <div className="flex w-full bg-[#f8f8f8] border rounded-[20px]">
+              <input type="text" placeholder="Search" className="border w-[90%] px-2 py-2 rounded-l-[20px]"></input>
+              <div className="w-[20px] h-[10px] mx-auto mt-2">
+              <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png"></img>
               </div>
             </div>
-          </div>
+          <div><img className="w-[10px] h-[20px] ml-4 mt-2" src="https://images.all-free-download.com/images/graphiclarge/microphone_icon_clip_art_9684.jpg"></img></div>
         </div>
-        <div className="flex  w-40">
+        <div className="flex justify-between w-[10%]">
+          <div className="w-[22px] h-[12px] mt-2">
           <img
             id="create"
-            className="w-[24px] h-[14px]"
             src="https://static.thenounproject.com/png/3750242-200.png"
-            width="17px"
-            height="17px"
           />
+          </div>
+          <div className="w-[20px] h-[10px] mt-2">
           <img
             id="icon"
-            className="w-[24px] h-[14px]"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsjw3SJzNMrobKr9cJmnXU0__rbQ5guJvig&usqp=CAU"
-            width="17px"
-            height="17px"
+            src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png"
           />
+          </div>
+          <div className="w-[35px] h-[35px]">
+           <img
+            id="icon"
+            src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
+          />
+          </div>
         </div>
       </div>
     </div>
