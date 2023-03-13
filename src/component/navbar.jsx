@@ -4,6 +4,7 @@ const Navbar = () => {
 
   const [value,setValue] = useState("")
   const [updatedValue, setUpdatedValue] = useState("")
+  const tabs = ["All", "Mixes", "Music", "Comedy", "Gaming", "Lofi", "Ed-Sheeren", "Bollywood Music", "Indian Music","New","Pop Music", "Lessons"]
 
   const handleChange = (e) =>{
     setValue(e.target.value)
@@ -17,18 +18,10 @@ const Navbar = () => {
   }
 
   return (
-    <div>
-      <div className=" py-2 flex justify-between mx-5">
+    <div className="fixed w-full z-10 bg-[white]">
+      <div className="py-2 flex justify-between px-5">
         <div className="flex justify-between w-[12%] my-auto">
-          <div>
-            {" "}
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvuUG62nIlWV_nnpvNT8_sdmvSPfsqF9HU0Q&usqp=CAU"
-              width="17px"
-              height="17px"
-            />
-          </div>
-          <div>
+          <div className="ml-12">
             <img
               src="https://149504167.v2.pressablecdn.com/wp-content/uploads/2019/10/2000px-YouTube_Logo_2017.svg_.png"
               width="90px"
@@ -65,6 +58,15 @@ const Navbar = () => {
           />
           </div>
         </div>
+      </div>
+      <div className='flex px-4 my-3 ml-16'>
+        {tabs.map((e)=>{
+          return(
+            <div className=''>
+            <button className='rounded-[5px] mx-2 px-3 py-1 bg-[#f2f2f2] text-[14px]'>{e}</button>
+            </div>
+          )
+        })}
       </div>
     </div>
   );
