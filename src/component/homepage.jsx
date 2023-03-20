@@ -1,11 +1,14 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../App'
 import Navbar from './navbar'
 import Sidebar from './sidebar'
 
 const Homepage = () => {
-
+  // AIzaSyDViP2uCSVcLTE7wHU3nkIenYFRQeOkq2o
+  const contextData = useContext(UserContext);
+  const { searchedData,value,setValue,handleSearch } = contextData;
   const [data,setData] = useState([])
   const APIR="AIzaSyDWSt2KeKOG_TXP2vl6Xcm56YCgO9dzEBE";
   useEffect(()=>{
@@ -15,25 +18,27 @@ const Homepage = () => {
     }).catch((err)=>{
       console.log(err)
     })
+    console.log("expensive fetching")
   },[])
 
-  const handleClick=(videoId)=>{
-    console.log("anushka",videoId)
-    localStorage.setItem("youtubeVideo",JSON.stringify(videoId))
+  const handleClick=(e)=>{
+    console.log("anushka",e)
+    localStorage.setItem("youtubeVideo",JSON.stringify(e))
   }
+
 
   return (
     <div className='ml-7'>
     <div className='flex pt-[120px]'>
-      <div className='w-[10%]'>
+      <div className='lg:w-[10%] w-[13%]'>
       </div>
       <div>
-      <div className='grid grid-cols-4'>
+      <div className='grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1'>
         {data.map((e)=>{
           return(
             <>
             <div className='mb-10'>
-              <Link to="/videopage"><img onClick={()=>handleClick(e.id.videoId)} className='w-[90%] h-[149px] object-cover rounded-[14px]' src={e.snippet.thumbnails.high.url}></img></Link>
+              <Link to="/videopage"><img onClick={()=>handleClick(e)} className='w-[90%] h-[190px] object-cover rounded-[14px]' src={e.snippet.thumbnails.high.url}></img></Link>
               <p className='text-[14px] font-medium mt-2'>{e.snippet.title}</p>
               <p className='text-[12px] text-[#616161] font-medium mt-2'>{e.snippet.channelTitle}</p>
             </div>

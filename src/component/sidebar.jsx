@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sidebar = () => {
   return (
-    <div className='fixed z-20 px-1'>
+    <div className='fixed z-20 px-1 lg:block hidden'>
       {/* side bar */}
       <div className="">
           <div className="pt-5"><img className="mx-auto items-center justify-center mx-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvuUG62nIlWV_nnpvNT8_sdmvSPfsqF9HU0Q&usqp=CAU" width="20px" height="20px" id="lefticon"/></div>
