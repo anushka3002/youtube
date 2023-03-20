@@ -10,7 +10,7 @@ const Homepage = () => {
   const contextData = useContext(UserContext);
   const { searchedData,value,setValue,handleSearch } = contextData;
   const [data,setData] = useState([])
-  const APIR="AIzaSyDWSt2KeKOG_TXP2vl6Xcm56YCgO9dzEBE";
+  const APIR="AIzaSyDViP2uCSVcLTE7wHU3nkIenYFRQeOkq2o";
   useEffect(()=>{
     axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=programming&type=video&key=${APIR}&maxResults=20`).then((response)=>{
       console.log(response.data.items)

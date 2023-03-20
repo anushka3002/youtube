@@ -18,7 +18,7 @@ function App() {
   const [searchData,setSearchData] = useState(searchedData)
   const navigate = useNavigate(); 
   const [value,setValue] = useState("")
-  const APIR="AIzaSyDWSt2KeKOG_TXP2vl6Xcm56YCgO9dzEBE";
+  const APIR="AIzaSyDViP2uCSVcLTE7wHU3nkIenYFRQeOkq2o";
   const [loader,setLoader] = useState(false)
   const location = useLocation();
   const [userPic,setUserPic] = useState(signedUser.imageUrl)

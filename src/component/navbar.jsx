@@ -1,10 +1,7 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import { UserContext } from "../App";
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import Google_auth from "../auth/google";
 
 const Navbar = () => {
   const tabs = ["All", "Mixes", "Music", "Comedy", "Gaming", "Lofi", "Entertainment", "Bollywood", "Cricket","New","Pop", "Lessons","King","Badshah"]
@@ -91,7 +88,7 @@ const Navbar = () => {
       <div className={`${userDropdown?"block":"hidden"} fixed right-8 border p-4 mt-[-60px] bg-[white] rounded-[15px] shadow-lg`}>
         <button className="w-full mx-auto flex justify-center text-[14px] border-b rounded-[5px] px-3 py-2">Sign Up</button>
         <p className="text-center">or</p>
-         <Google_auth/>
+         {/* <Google_auth/> */}
       </div>
     </div>
   );
