@@ -23,13 +23,9 @@ function App() {
   const [loader,setLoader] = useState(false)
   const location = useLocation();
   const [homePageQuery,setHomePageQuery] = useState("mixed")
-  let user_pic  = JSON.parse(localStorage.getItem("google user")) || []
-  // "https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
-  const [userPic,setUserPic] = useState(user_pic.picture)
-  console.log(user_pic,"user pic")
+  let google_user  = JSON.parse(localStorage.getItem("google user")) || []
+  const [userPic,setUserPic] = useState(google_user.picture)
   const [userDropdown,setUserDropdown] = useState(false)
-  // 1009641079467-lijtfg5ur31t6emqi7hl9q6mqo9h3nq2.apps.googleusercontent.com
-
 
   const handleSearch = ()=>{
     console.log(value,"searched value")
@@ -63,7 +59,8 @@ function App() {
     userDropdown,
     setUserDropdown,
     homePageQuery,
-    setHomePageQuery
+    setHomePageQuery,
+    google_user
   }
   return (
     <SkeletonTheme baseColor="#cccccc" highlightColor="#a2a2a2" duration={0.7}>

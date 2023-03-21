@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
@@ -12,8 +13,8 @@ const Sidebar = () => {
         <p className="text-[10px] pt-2 text-center">Explore</p></div>
         <div className="pt-6"><img className="items-center justify-center mx-auto" src="https://cdn.iconscout.com/icon/free/png-256/subscriptions-1781681-1518361.png" width="24px" height="24px" id="lefticon"/>
         <p className="text-[10px] pt-2 text-center">Subscriptions</p></div>
-        <div className="pt-6"> <img className="items-center justify-center mx-auto" src="https://static.thenounproject.com/png/2481186-200.png" width="24px" height="24px" id="lefticon"/>
-        <p className="text-[10px] pt-2 text-center">Library</p></div>
+        <Link to="/library"><div className="pt-6"> <img className="items-center justify-center mx-auto" src="https://static.thenounproject.com/png/2481186-200.png" width="24px" height="24px" id="lefticon"/>
+        <p className="text-[10px] pt-2 text-center">Library</p></div></Link>
       </div>
     </div>
   )
