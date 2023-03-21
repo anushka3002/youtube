@@ -2,17 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import { UserContext } from "../App";
+import Google_auth from "../auth/google"
 
 const Navbar = () => {
   const tabs = ["All", "Mixes", "Music", "Comedy", "Gaming", "Lofi", "Entertainment", "Bollywood", "Cricket","New","Pop", "Lessons","King","Badshah"]
   const navigate = useNavigate(); 
   const location = useLocation();
-  const [searchedItem,setSearchedItem] = useState([])
   console.log(location.pathname,"pathname")
   const contextData = useContext(UserContext)
-  const {value,setValue,handleSearch,userPic,setUserPic,userDropdown,setUserDropdown} = contextData;
+  const {value,setValue,handleSearch,userPic,setUserPic,userDropdown,setUserDropdown,setHomePageQuery} = contextData;
   const signedUser = JSON.parse(localStorage.getItem("google user")) || []
-  console.log(signedUser,"signeduser")
 
   const handleChange = (e) =>{
     setValue(e.target.value)
@@ -25,7 +24,7 @@ const Navbar = () => {
     }
   }
 
-  console.log(signedUser,"signed usere")
+  console.log(signedUser.picture,"signed usere")
 
   useEffect(()=>{
     signedUser.length!=0 && setUserPic(userPic)
@@ -67,12 +66,19 @@ const Navbar = () => {
           />
           </div>
           <div className="w-[35px] h-[35px] ml-5">
+          {signedUser.picture ==undefined ? 
+          <img
+          className="rounded-[50%]"
+          onClick={()=>setUserDropdown(true)}
+          id="icon"
+          src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
+        />:
            <img
             className="rounded-[50%]"
             onClick={()=>setUserDropdown(true)}
             id="icon"
             src={userPic}
-          />
+          />}
           </div>
         </div>
       </div>
@@ -80,7 +86,7 @@ const Navbar = () => {
         {tabs.map((e)=>{
           return(
             <div className=''>
-            <button className='rounded-[5px] mx-2 px-3 py-1 bg-[#f2f2f2] text-[14px]'>{e}</button>
+            <button onClick={()=>setHomePageQuery(e)} className='rounded-[5px] mx-2 px-3 py-1 bg-[#f2f2f2] text-[14px]'>{e}</button>
             </div>
           )
         })}
@@ -88,7 +94,7 @@ const Navbar = () => {
       <div className={`${userDropdown?"block":"hidden"} fixed right-8 border p-4 mt-[-60px] bg-[white] rounded-[15px] shadow-lg`}>
         <button className="w-full mx-auto flex justify-center text-[14px] border-b rounded-[5px] px-3 py-2">Sign Up</button>
         <p className="text-center">or</p>
-         {/* <Google_auth/> */}
+         <Google_auth/>
       </div>
     </div>
   );

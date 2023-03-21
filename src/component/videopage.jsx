@@ -7,7 +7,6 @@ const Videopage = () => {
   const { searchedData } = value;
   let videoData = JSON.parse(localStorage.getItem("youtubeVideo")) || []
   const [selectedVideo,setSelectedVideo] = useState(videoData)
-  console.log(videoData, "vis");
   const handleClick = (e) => {
     localStorage.setItem("youtubeVideo", JSON.stringify(e));
     setSelectedVideo(e)

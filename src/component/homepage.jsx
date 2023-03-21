@@ -2,27 +2,22 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../App'
-import Navbar from './navbar'
-import Sidebar from './sidebar'
 
 const Homepage = () => {
-  // AIzaSyDViP2uCSVcLTE7wHU3nkIenYFRQeOkq2o
   const contextData = useContext(UserContext);
-  const { searchedData,value,setValue,handleSearch } = contextData;
+  const { homePageQuery } = contextData;
   const [data,setData] = useState([])
-  const APIR="AIzaSyDViP2uCSVcLTE7wHU3nkIenYFRQeOkq2o";
-  useEffect(()=>{
-    axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=programming&type=video&key=${APIR}&maxResults=20`).then((response)=>{
-      console.log(response.data.items)
-      setData(response.data.items)
-    }).catch((err)=>{
-      console.log(err)
-    })
-    console.log("expensive fetching")
-  },[])
+  const API = process.env.REACT_APP_API_2
+  // useEffect(()=>{
+  //   axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=1`).then((response)=>{
+  //     console.log(response.data.items)
+  //     setData(response.data.items)
+  //   }).catch((err)=>{
+  //     console.log(err)
+  //   })
+  // },[homePageQuery])
 
   const handleClick=(e)=>{
-    console.log("anushka",e)
     localStorage.setItem("youtubeVideo",JSON.stringify(e))
   }
 
