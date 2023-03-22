@@ -32,7 +32,7 @@ function App() {
     setLoader(true)
     navigate("/searchpage")
     console.log("handlesearch")
-    axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${value}&type=video&key=${process.env.REACT_APP_API_2}`).then((response)=>{
+    axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${value}&type=video&key=${process.env.REACT_APP_API_3}`).then((response)=>{
       console.log(response,"response")
       setSearchData(response.data.items)
       localStorage.setItem("searchedKey",JSON.stringify(response.data.items))

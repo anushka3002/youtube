@@ -11,6 +11,9 @@ const Library = () => {
     (obj, index) =>
       history.findIndex((item) => item.id.videoId === obj.id.videoId) === index
   );
+  const handleClick = (e) => {
+    localStorage.setItem("youtubeVideo", JSON.stringify(e));
+  };
   console.log(unique, "data data");
 
   return (
@@ -37,14 +40,15 @@ const Library = () => {
             </Link>
           </div>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 mt-4">
-            {unique.map((e) => {
+            {unique.slice(0).reverse().map((e) => {
               return (
                 <>
                   <div className="mb-10">
-                    <img
+                    <Link to="/videoPage"><img
+                    onClick={() => handleClick(e)}
                       className="w-[95%] h-[110px] object-cover rounded-[14px]"
                       src={e.snippet.thumbnails.high.url}
-                    ></img>
+                    ></img></Link>
                     <p className="text-[14px] font-medium mt-2">
                       {e.snippet.title}
                     </p>

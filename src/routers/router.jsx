@@ -5,6 +5,7 @@ import History from '../component/Library/history'
 import Library from '../component/Library/library'
 import Navbar from '../component/navbar'
 import Searchpage from '../component/searchpage'
+import Shorts from '../component/shorts'
 import Videopage from '../component/videopage'
 
 const Router = () => {
@@ -16,6 +17,7 @@ const Router = () => {
         <Route exact path='/searchpage' element={<Searchpage/>}></Route>
         <Route exact path='/library' element={<Library/>}></Route>
         <Route exact path='/history' element={<History/>}></Route>
+        <Route exact path='/shorts' element={<Shorts/>}></Route>
     </Routes>
     </>
   )
