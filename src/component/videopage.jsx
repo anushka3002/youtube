@@ -6,10 +6,14 @@ const Videopage = () => {
   const value = useContext(UserContext);
   const { searchedData } = value;
   let videoData = JSON.parse(localStorage.getItem("youtubeVideo")) || []
+  let history = JSON.parse(localStorage.getItem("historyData")) || []
   const [selectedVideo,setSelectedVideo] = useState(videoData)
   const handleClick = (e) => {
+    history.push(e)
     localStorage.setItem("youtubeVideo", JSON.stringify(e));
     setSelectedVideo(e)
+    localStorage.setItem("historyData",JSON.stringify(history))
+
   };
 
   useEffect(()=>{

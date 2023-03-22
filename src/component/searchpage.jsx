@@ -7,9 +7,12 @@ import Skeleton from "react-loading-skeleton";
 const Searchpage = () => {
   const value = useContext(UserContext);
   const { searchedData, loader } = value;
+  let history = JSON.parse(localStorage.getItem("historyData")) || []
 
   const handleClick = (e) => {
+    history.push(e)
     localStorage.setItem("youtubeVideo", JSON.stringify(e));
+    localStorage.setItem("historyData",JSON.stringify(history))
   };
 
   return (
