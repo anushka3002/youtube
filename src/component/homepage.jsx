@@ -9,6 +9,7 @@ const Homepage = () => {
   const [data,setData] = useState([])
   let history = JSON.parse(localStorage.getItem("historyData")) || []
   const API = process.env.REACT_APP_API_3
+  console.log(API,"api check")
   useEffect(()=>{
     axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=2`).then((response)=>{
       // console.log(response.data.items)
