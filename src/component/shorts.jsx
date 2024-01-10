@@ -1,17 +1,26 @@
 import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../App";
 import ReactPlayer from "react-player";
+import { UserContextData } from "../context/get-user-context";
 
 const Shorts = () => {
-  const contextData = useContext(UserContext);
-  const { homePageQuery } = contextData;
+  const { homePageQuery } = UserContextData();
   const [data, setData] = useState([]);
   const videoRef = useRef()
   let history = JSON.parse(localStorage.getItem("historyData")) || [];
   let videoData = JSON.parse(localStorage.getItem("youtubeVideo")) || [];
-  const API = process.env.REACT_APP_API_3;
+  const liked_videos = JSON.parse(localStorage.getItem("likedVideos")) || []
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
+  let e=0
+  const handleLike = (e)=>{
+    liked_videos.push(e)
+    localStorage.setItem("likedVideos",JSON.stringify(liked_videos))
+  }
+
+ 
+  const API = process.env.REACT_APP_API_4;
   useEffect(() => {
     axios
       .get(
@@ -19,13 +28,35 @@ const Shorts = () => {
       )
       .then((response) => {
         setData(response.data.items);
+        console.log(response.data.items,"items")
       })
       .catch((err) => {
         console.log(err);
       });
   }, [])
 
+  useEffect(() => {
+    const handleClick = (event) => {
+      const videoElement = videoRef.current;
+      if (event.target === videoElement) {
+        const index = data.findIndex((e) => e.id.videoId === videoElement.src.split('/').pop());
+        const video = data[index];
+        console.log('Clicked on video:', video);
+        // Call your handleClick function with the video object
+        // Example: handleClick(video);
+      }
+    };
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      videoElement.addEventListener('click', handleClick);
+      return () => {
+        videoElement.removeEventListener('click', handleClick);
+      };
+    }
+  }, [data]);
+
   const handleClick = (e) => {
+    console.log('in history')
     history.push(e);
     localStorage.setItem("youtubeVideo", JSON.stringify(e));
     localStorage.setItem("historyData", JSON.stringify(history));
@@ -36,7 +67,7 @@ const Shorts = () => {
       <div className="flex pt-[80px]">
         <div className="lg:w-[10%] w-[13%]"></div>
         <div className=" mx-auto w-[30%]">
-          {data.map((e) => {
+          {data.map((e,index) => {
             return (
               <>
                 <div className="flex w-[100%]">
@@ -44,20 +75,38 @@ const Shorts = () => {
                   <iframe
                   ref={videoRef}
                     allow='autoplay; encrypted-media'
-                    onClick={() => handleClick(e)}
+                    // onClick={() => handleClick(e)}
                     className="h-screen rounded-[14px]"
                     // ?autoplay=1
+                    data-index={index}
                     src={`https://www.youtube.com/embed/${e.id.videoId}`}
                   ></iframe>
                 </div>
                 <div className="h-screen flex flex-col">
                 <div className="mt-auto">
                   <div>
-                    <div className="bg-[#f2f2f2] p-3 rounded-[50%] my-3 w-[45px] mx-auto"><img className="" src="https://cdn-icons-png.flaticon.com/512/39/39508.png"></img></div>
+                    <div onClick={() => {
+                  setLike(!like);
+                  handleLike(e)
+                  dislike && setDislike(!dislike);
+                }} className="bg-[#f2f2f2] p-3 rounded-[50%] my-3 w-[45px] mx-auto"><img className="" src={`${
+                    like
+                      ? "https://www.freeiconspng.com/thumbs/like-button-png/like-button-png-26.png"
+                      : "https://cdn-icons-png.flaticon.com/512/126/126473.png"
+                  }`}></img></div>
                     <p className="text-[15px] text-center">1.5M</p>
                   </div>
                   <div>
-                  <div className="bg-[#f2f2f2] p-3 rounded-[50%] my-3 w-[45px] mx-auto"><img src="https://cdn.onlinewebfonts.com/svg/img_529680.png"></img></div>
+                  <div onClick={() => {
+                  setDislike(!dislike);
+                  liked_videos.pop(e)
+                  localStorage.setItem("likedVideos",JSON.stringify(liked_videos))
+                  like && setLike(!like);
+                }} className="bg-[#f2f2f2] p-3 rounded-[50%] my-3 w-[45px] mx-auto"><img  src={`${
+                    dislike
+                      ? "https://www.freeiconspng.com/thumbs/youtube-dislike-png/black-and-white-youtube-dislike-png-icon-22.png"
+                      : "https://cdn-icons-png.flaticon.com/512/126/126504.png"
+                  }`}></img></div>
                     <p className="text-[15px] text-center">Dislike</p>
                   </div>
                   <div>

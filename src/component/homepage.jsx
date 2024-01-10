@@ -2,25 +2,28 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../App'
+import { useNavigate } from 'react-router-dom'
+import { UserContextData } from '../context/get-user-context'
 
 const Homepage = () => {
-  const contextData = useContext(UserContext);
-  const { homePageQuery } = contextData;
+  const { homePageQuery,setValue,handleSearch } = UserContextData();
   const [data,setData] = useState([])
+  const navigate=useNavigate()
   let history = JSON.parse(localStorage.getItem("historyData")) || []
-  const API = process.env.REACT_APP_API_3
-  console.log(API,"api check")
-  useEffect(()=>{
-    axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=2`).then((response)=>{
-      // console.log(response.data.items)
-      setData(response.data.items)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  },[homePageQuery])
+  const API = process.env.REACT_APP_API_4
+  // useEffect(()=>{
+  //   axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=2`).then((response)=>{
+  //     setData(response.data.items)
+  //   }).catch((err)=>{
+  //     console.log(err)
+  //   })
+  // },[homePageQuery])
 
   const handleClick=(e)=>{
+    setValue(e.snippet.title)
+    navigate("/videopage")
     history.push(e)
+    handleSearch(e.snippet.channelTitle)
     localStorage.setItem("youtubeVideo",JSON.stringify(e))
     localStorage.setItem("historyData",JSON.stringify(history))
   }
@@ -36,11 +39,11 @@ const Homepage = () => {
         {data.map((e)=>{
           return(
             <>
-            <Link to="videoPage"><div className='mb-10'>
-              <img onClick={()=>handleClick(e)} className='w-[90%] h-[190px] object-cover rounded-[14px]' src={e.snippet.thumbnails.high.url}></img>
+            <div className='mb-10'>
+              <img onClick={()=>handleClick(e)} className='w-[90%] h-[190px] object-cover rounded-[14px] cursor-pointer' src={e.snippet.thumbnails.high.url}></img>
               <p className='text-[14px] font-medium mt-2'>{e.snippet.title}</p>
               <p className='text-[12px] text-[#616161] font-medium mt-2'>{e.snippet.channelTitle}</p>
-            </div></Link>
+            </div>
             </>
           )
         })}
