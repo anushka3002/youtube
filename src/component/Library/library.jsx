@@ -7,7 +7,7 @@ const Library = () => {
   let history = JSON.parse(localStorage.getItem("historyData"));
   let liked_videos = JSON.parse(localStorage.getItem("likedVideos"))
 
-  const unique = history.filter(
+  const unique = history?.filter(
     (obj, index) =>
       history.findIndex((item) => item.id.videoId === obj.id.videoId) === index
   );
@@ -41,7 +41,7 @@ const Library = () => {
             </Link>
           </div>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 mt-4">
-            {unique.slice(0).reverse().map((e) => {
+            {unique?.length>0 ? unique?.slice(0).reverse().map((e) => {
               return (
                 <>
                   <div className="mb-10">
@@ -59,7 +59,7 @@ const Library = () => {
                   </div>
                 </>
               );
-            })}
+            }) : <div className="text-[grey]">You have not watched any video yet</div>}
           </div>
           <hr></hr>
           {/* liked videos */}
@@ -70,7 +70,7 @@ const Library = () => {
                   className="w-[23px] h-[20px]"
                   src="https://cdn-icons-png.flaticon.com/512/126/126473.png"
                 ></img>
-                <p className="ml-2 text-[16px] font-medium">Liked videos</p><p className="ml-3 text-[13px] mt-[4px]">{liked_videos.length}</p>
+                <p className="ml-2 text-[16px] font-medium">Liked videos</p><p className="ml-3 text-[13px] mt-[4px]">{liked_videos?.length}</p>
               </div>
             </Link>
             <Link to="/liked_videos">
@@ -82,7 +82,7 @@ const Library = () => {
             </Link>
           </div>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 mt-4">
-            {liked_videos.slice(0).reverse().map((e) => {
+            {liked_videos?.length>0 ? liked_videos?.slice(0).reverse().map((e) => {
               return (
                 <>
                   <div className="mb-10">
@@ -100,7 +100,7 @@ const Library = () => {
                   </div>
                 </>
               );
-            })}
+            }) : <div className="text-[grey]">You have not liked any video yet</div>}
           </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ const Library = () => {
           </div>
           <div className="flex border-y justify-between text-[12px] py-2">
             <p>Likes</p>
-            <p>{liked_videos.length}</p>
+            <p>{liked_videos?.length}</p>
           </div>
         </div>
       </div>

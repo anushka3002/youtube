@@ -8,7 +8,7 @@ const History = () => {
   const [filterValue,setFilterValue] = useState()
 
   useEffect(()=>{
-    let uniqueData = history.filter(
+    let uniqueData = history?.filter(
       (obj, index) =>
         history.findIndex((item) => item.id.videoId === obj.id.videoId) === index
     );
@@ -39,7 +39,7 @@ const History = () => {
     <div className="ml-28 pt-[80px] flex">
       <div className="w-[50%]">
         <p className="ml-2 text-[16px] font-medium mb-4">Watch History</p>
-        {unique.slice(0).reverse().map((e) => {
+        {unique?.length>0 ? unique?.slice(0).reverse().map((e) => {
           return (
             <div className=" flex w-full">
               <div className="w-[50%] mb-4">
@@ -62,7 +62,7 @@ const History = () => {
               </div>
             </div>
           );
-        })}
+        }) : <div className="text-center h-[600px] items-center flex"><p className="text-center mx-auto text-[20px] text-[grey]">You have not watched any video yet</p></div>}
       </div>
       <div className="w-[30%] ml-[15%] mr-[5%]">
         <div className="flex border-b border-[#1a343a] pb-2 w-[70%]">

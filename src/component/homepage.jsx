@@ -11,13 +11,13 @@ const Homepage = () => {
   const navigate=useNavigate()
   let history = JSON.parse(localStorage.getItem("historyData")) || []
   const API = process.env.REACT_APP_API_4
-  // useEffect(()=>{
-  //   axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=2`).then((response)=>{
-  //     setData(response.data.items)
-  //   }).catch((err)=>{
-  //     console.log(err)
-  //   })
-  // },[homePageQuery])
+  useEffect(()=>{
+    axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=2`).then((response)=>{
+      setData(response.data.items)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[homePageQuery])
 
   const handleClick=(e)=>{
     setValue(e.snippet.title)
