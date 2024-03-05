@@ -74,8 +74,6 @@ const Navbar = () => {
   //   }
   // },[listening])
 
-  console.log(listening,"listening",isOpen,"is open outside")
-
 
   useEffect(() => {
     if(transcript.length>0){
@@ -106,7 +104,6 @@ const Navbar = () => {
     // onClose()
   }
 
- 
   return (
     <div className="fixed w-full bg-[#ffffff]">
       <div className="py-2 flex justify-between px-5">

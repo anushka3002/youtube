@@ -27,7 +27,7 @@ const Sidebar = () => {
       route: "/library",
     },
     {
-      icon: "https://uxwing.com/wp-content/themes/uxwing/download/computers-mobile-hardware/history-line-icon.png",
+      icon: "https://e7.pngegg.com/pngimages/6/111/png-clipart-computer-icons-web-browser-web-browsing-history-world-wide-web-text-desktop-wallpaper-thumbnail.png",
       title: "History",
       route: "/history",
     },
@@ -158,7 +158,7 @@ const Sidebar = () => {
                         {e.title}
                       </p>
                     </div></Link>
-                    {e.title == "Subscriptions" && <hr className="my-3"></hr>}
+                    {e.title === "Subscriptions" && <hr className="my-3"></hr>}
                   </div>
                 );
               })}
