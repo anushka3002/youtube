@@ -28,6 +28,8 @@ const Homepage = () => {
     localStorage.setItem("historyData",JSON.stringify(history))
   }
 
+  console.log(API,'api')
+
 
   return (
     <div className='ml-7'>
