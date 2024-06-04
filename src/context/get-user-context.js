@@ -23,7 +23,7 @@ export default function UserContextProvider({children}){
       // subscriptions:[],
     })
     const [loader,setLoader] = useState(false)
-    const [homePageQuery,setHomePageQuery] = useState("mixed")
+    const [homePageQuery,setHomePageQuery] = useState("programming")
     let google_user  = JSON.parse(localStorage.getItem("google user")) || []
     const [userPic,setUserPic] = useState(google_user.picture)
     const [userDropdown,setUserDropdown] = useState(false)
@@ -33,7 +33,7 @@ export default function UserContextProvider({children}){
     const handleSearch = (e)=>{
       setLoader(true)
       console.log(e,"being called,")
-      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${e}&type=video&maxResults=2&key=${process.env.REACT_APP_API_1}`).then((response)=>{
+      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${e}&type=video&maxResults=10&key=${process.env.REACT_APP_API_2}`).then((response)=>{
         setSearchData(response.data.items)
         // navigate("/searchpage")
         localStorage.setItem("searchedKey",JSON.stringify(response.data.items))

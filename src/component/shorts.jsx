@@ -19,12 +19,11 @@ const Shorts = () => {
     localStorage.setItem("likedVideos",JSON.stringify(liked_videos))
   }
 
- 
-  const API = process.env.REACT_APP_API_4;
+  const API = process.env.REACT_APP_API_2;
   useEffect(() => {
     axios
       .get(
-        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=youtube_shorts&type=video&key=${API}&maxResults=1&autoplay=true`
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=youtube_shorts_coding&type=video&key=${API}&maxResults=10&autoplay=true`
       )
       .then((response) => {
         setData(response.data.items);
@@ -41,9 +40,6 @@ const Shorts = () => {
       if (event.target === videoElement) {
         const index = data.findIndex((e) => e.id.videoId === videoElement.src.split('/').pop());
         const video = data[index];
-        console.log('Clicked on video:', video);
-        // Call your handleClick function with the video object
-        // Example: handleClick(video);
       }
     };
     const videoElement = videoRef.current;
@@ -70,19 +66,19 @@ const Shorts = () => {
           {data.map((e,index) => {
             return (
               <>
-                <div className="flex w-[100%]">
-                  <div className="w-[85%]">
+                <div className="flex w-[100%] height-s">
+                  <div className="w-[100%]">
                   <iframe
                   ref={videoRef}
                     allow='autoplay; encrypted-media'
                     // onClick={() => handleClick(e)}
-                    className="h-screen rounded-[14px]"
+                    className="h-[95%] rounded-[14px] w-[100%]"
                     // ?autoplay=1
                     data-index={index}
                     src={`https://www.youtube.com/embed/${e.id.videoId}`}
                   ></iframe>
                 </div>
-                <div className="h-screen flex flex-col">
+                <div className="h-[95%] justify-content-end flex flex-col ml-2">
                 <div className="mt-auto">
                   <div>
                     <div onClick={() => {

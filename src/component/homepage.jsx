@@ -10,9 +10,9 @@ const Homepage = () => {
   const [data,setData] = useState([])
   const navigate=useNavigate()
   let history = JSON.parse(localStorage.getItem("historyData")) || []
-  const API = process.env.REACT_APP_API_1
+  const API = process.env.REACT_APP_API_2
   useEffect(()=>{
-    axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=2`).then((response)=>{
+    axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${homePageQuery}&type=video&key=${API}&maxResults=10`).then((response)=>{
       setData(response.data.items)
     }).catch((err)=>{
       console.log(err)
