@@ -108,11 +108,11 @@ const Navbar = () => {
     <div className="fixed w-full bg-[#ffffff]">
       <div className="py-2 flex justify-between px-5">
         <div className="flex justify-between my-auto">
-          <div className="ml-12 w-[90px] h-[18px]">
+          <div className="ml-12 w-[100px] h-[18px]">
             <img
               className="cursor-pointer"
               onClick={() => navigate("/")}
-              src="https://149504167.v2.pressablecdn.com/wp-content/uploads/2019/10/2000px-YouTube_Logo_2017.svg_.png"
+              src="/youtubelogo.svg"
             />
           </div>
         </div>

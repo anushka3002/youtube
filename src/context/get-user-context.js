@@ -23,7 +23,7 @@ export default function UserContextProvider({children}){
       // subscriptions:[],
     })
     const [loader,setLoader] = useState(false)
-    const [homePageQuery,setHomePageQuery] = useState("programming")
+    const [homePageQuery,setHomePageQuery] = useState("standup")
     let google_user  = JSON.parse(localStorage.getItem("google user")) || []
     const [userPic,setUserPic] = useState(google_user.picture)
     const [userDropdown,setUserDropdown] = useState(false)
